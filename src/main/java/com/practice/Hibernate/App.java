@@ -1,5 +1,6 @@
 package com.practice.Hibernate;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -18,5 +19,18 @@ public class App
         
         System.out.println(factory);
         System.out.println(factory.isClosed());
+        
+        Student std = new Student();
+        std.setId(101);
+        std.setName("Johny");
+        std.setCity("Raipur");
+        
+        System.out.println(std);
+        
+        Session session = factory.openSession();
+        session.beginTransaction();
+        session.save(std);
+        session.getTransaction().commit();
+        session.close();
     }
 }
